@@ -1,0 +1,42 @@
+{
+  "name": "lottie-lower-thirds",
+  "version": "0.0.0",
+  "description": "Browser based lower third animation using nodecg & lottie",
+  "homepage": "",
+  "author": {
+    "name": "Kushan Shamika",
+    "email": "shamikakushan@gmail.com",
+    "url": "http://kushan.info/"
+  },
+  "files": [
+    "dashboard",
+    "graphics",
+    "extension.js",
+    "extension"
+  ],
+  "keywords": [
+    "",
+    "nodecg-bundle"
+  ],
+  "nodecg": {
+    "compatibleRange": "^1.1.1",
+    "dashboardPanels": [
+      {
+        "name": "lower-third-controller",
+        "title": "Lower Third Controller",
+        "width": 2,
+        "file": "lower-third-controller.html",
+        "headerColor": "#525F78"
+      }
+    ],
+    "graphics": [
+      {
+        "file": "index.html",
+        "width": 1920,
+        "height": 1080
+      }
+    ]
+  },
+  "repository": "https://github.com/nodecg/nodecg.git",
+  "license": "Apache-2.0"
+}

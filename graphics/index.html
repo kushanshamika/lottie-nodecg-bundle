@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
+    <style>
+		#lowerThird {
+			width: 1920px;
+			height: 1080px;
+			z-index: 0;
+			visibility: hidden;
+		}
+
+		#name {
+			position: absolute;
+			font-family: 'Oswald', sans-serif;
+			left: 700px;
+			top: 475px;
+			font-size: 50px;
+			z-index: 1;
+			color: white;
+			visibility: hidden;
+		}
+	</style>
+</head>
+<body>
+
+
+    <div id="lowerThird">
+		<span id="name">KUSHAN SHAMIKA</span>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js" integrity="sha512-m0RQU4SBx0p/bLwRiI4fJBGRafVLZ4s86wRe1+OAx5EXbcWiS/X1jvYdJQRD8jOoIVl+WTyVeMawUWVCh1O8+Q==" crossorigin="anonymous"></script>
+    <script>
+		var loop = 0;
+		var initLoader = 0;
+
+		var animation = lottie.loadAnimation({
+			container: document.getElementById('lowerThird'), // the dom element that will contain the animation
+			renderer: 'svg',
+			loop: false,
+			autoplay: false,
+			path: 'https://assets5.lottiefiles.com/packages/lf20_B0oCeQ.json' // the path to the animation json
+		});
+
+		function playAnimation() {
+			document.getElementById('lowerThird').style.visibility = 'visible';
+			animation.playSegments([0, 120], true);
+		}
+
+		const animationReplicant = nodecg.Replicant('animationReplicant');
+
+		animationReplicant.on('change', value => {
+
+			if (initLoader > 0) {
+				playAnimation();
+			}
+		})
+
+		animation.onEnterFrame = function(e) {
+
+			if (e.currentTime > 50) {
+				document.getElementById('lowerThird').style.visibility = 'visible';
+			}
+
+			if (e.currentTime > 50) {
+				document.getElementById('name').style.visibility = 'visible';
+			}
+			if (e.currentTime > 100) {
+				animation.setDirection(-1);
+				loop = loop + 1;
+			}
+
+			if (loop > 0 && e.currentTime < 60) {
+				document.getElementById('name').style.visibility = 'hidden';
+			}
+
+			if (loop > 0 && e.currentTime === 0) {
+				document.getElementById('lowerThird').style.visibility = 'hidden';
+			}
+
+			console.log("Current Time -> ",e.currentTime, " Loop Count -> ", loop);
+		}
+
+		initLoader = initLoader+1;
+
+	</script>
+</body>
+</html>
