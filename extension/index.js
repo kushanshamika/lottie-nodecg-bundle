@@ -1,5 +1,9 @@
 'use strict';
 
 module.exports = function (nodecg) {
-	nodecg.Replicant('animationReplicant', {persistent: false });
+	nodecg.listenFor('requestLowerThird', play);
+
+	function play(type) {
+		nodecg.sendMessage('startLowerThird', type)
+	}
 };

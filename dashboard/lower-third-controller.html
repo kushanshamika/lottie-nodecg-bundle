@@ -11,11 +11,8 @@
 
 	<script>
 
-		const animationReplicant = nodecg.Replicant('animationReplicant');
-
 		function playAnimation(){
-			animationReplicant.value = Math.floor(Math.random() * 999);
-			console.log(animationReplicant.value)
+			nodecg.sendMessage('requestLowerThird', 'playerName')
 		}
 	</script>
 </body>

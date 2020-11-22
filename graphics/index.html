@@ -36,7 +36,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js" integrity="sha512-m0RQU4SBx0p/bLwRiI4fJBGRafVLZ4s86wRe1+OAx5EXbcWiS/X1jvYdJQRD8jOoIVl+WTyVeMawUWVCh1O8+Q==" crossorigin="anonymous"></script>
     <script>
 		var loop = 0;
-		var initLoader = 0;
 
 		var animation = lottie.loadAnimation({
 			container: document.getElementById('lowerThird'), // the dom element that will contain the animation
@@ -51,13 +50,8 @@
 			animation.playSegments([0, 120], true);
 		}
 
-		const animationReplicant = nodecg.Replicant('animationReplicant');
-
-		animationReplicant.on('change', value => {
-
-			if (initLoader > 0) {
-				playAnimation();
-			}
+		nodecg.listenFor('startLowerThird', type => {
+			playAnimation();
 		})
 
 		animation.onEnterFrame = function(e) {
@@ -84,8 +78,6 @@
 
 			console.log("Current Time -> ",e.currentTime, " Loop Count -> ", loop);
 		}
-
-		initLoader = initLoader+1;
 
 	</script>
 </body>
